@@ -42,5 +42,9 @@
     "json-server-auth": "^2.1.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "tailwindcss": "^3.3.3"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "tailwind.config.js",
+  "author": "GuQli",
+  "license": "ISC"
 }
