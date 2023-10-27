@@ -1,0 +1,40 @@
+import { ProductCard } from "../../../components";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { getFeaturedList } from "../../../utils/productUtil";
+
+export const FeaturedProducts = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchFeaturedProducts() {
+      try {
+        const data = await getFeaturedList();
+        setProducts(data);
+      } catch (error) {
+        toast.error(
+          `Featured Products Error: ${error.status} ${error.message}`,
+          {
+            position: "bottom-right",
+            theme: "light",
+            closeOnClick: true,
+          }
+        );
+      }
+    }
+    fetchFeaturedProducts();
+  }, []);
+
+  return (
+    <section className="my-20">
+      <h1 className="text-2xl text-center font-semibold dark:text-slate-100 mb-5 underline underline-offset-8">
+        Featured eBooks ({products.length})
+      </h1>
+      <div className="flex flex-wrap justify-center lg:flex-row">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </section>
+  );
+};
